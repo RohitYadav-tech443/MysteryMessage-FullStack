@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import AuthProvider from "@/context/AuthProvider";
-import { Toaster } from "@/components/ui/sonner"; 
+import AuthProvider from '../context/AuthProvider';
+import { Toaster } from "sonner";
+// import Navbar from "@/components/Navbar";
 
-// below two lines are used for the new code updation of the line 
-// const inter =Inter({ subsets: ['latin'] });
 const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' });
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' });
 
@@ -20,14 +19,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <AuthProvider>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
-      >
-        {children}
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <body>
+        <AuthProvider>
+          {/* <Navbar /> */}
+          {children}
+          <Toaster />
+        </AuthProvider>
       </body>
-      </AuthProvider>
     </html>
   );
 }
